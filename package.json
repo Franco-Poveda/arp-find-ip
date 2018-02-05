@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Franco-Poveda/arp-find-ip#readme",
   "dependencies": {
     "async": "^2.6.0",
+    "config": "^1.29.4",
     "ip": "^1.1.5"
   }
 }

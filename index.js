@@ -1,8 +1,10 @@
+var config = require('config');
 var util          = require('util')
 ,   ARP_Discovery = require('./lib/arp-discovery')
 ;
 
-var arp = new ARP_Discovery({timeout:1000, flood_interval: 300, resolve_macvendor:false});
+var cclon = config.get('cclon');
+var arp = new ARP_Discovery({timeout:1000, resolve_macvendor:false});
 
 arp.on('error', function(err){
   console.log(err);
@@ -14,14 +16,7 @@ arp.on('success', function(res) {
         console.log('!res');
         return;
     }
-    var list = arp.getMacs();
-    if(list['8C:85:90:0C:AA:03'] !== undefined) {
-        console.log("found", list['8C:85:90:0C:AA:03']);
-    }
-    else
-    console.log('not found');
-    //console.log('success: '+util.inspect(res, { depth: null }));
-    //console.log('getMacs: '+util.inspect(arp.getMacs(), { depth: null }));
-    //console.log('getIps:  '+util.inspect(arp.getIps(), { depth: null }));
+    
+    console.log(arp.getIP(cclon.mac));
 });
 arp.discover();
