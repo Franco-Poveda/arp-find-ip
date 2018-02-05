@@ -1,0 +1,23 @@
+{
+  "name": "arp-find-ip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Franco-Poveda/arp-find-ip.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Franco-Poveda/arp-find-ip/issues"
+  },
+  "homepage": "https://github.com/Franco-Poveda/arp-find-ip#readme",
+  "dependencies": {
+    "arpscan": "^0.6.0",
+    "network": "^0.4.0"
+  }
+}
