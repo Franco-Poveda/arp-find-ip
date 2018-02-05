@@ -1,27 +1,27 @@
-var network = require('network');
-var arpScanner = require('arpscan/promise');
+var util          = require('util')
+,   ARP_Discovery = require('./lib/arp-discovery')
+;
 
-network.get_active_interface(function(err, obj) {
-/*   
-    { name: 'eth0',
-      ip_address: '10.0.1.3',
-      mac_address: '56:e5:f9:e4:38:1d',
-      type: 'Wired',
-      netmask: '255.255.255.0',
-      gateway_ip: '10.0.1.1' }
-   
-    */
-    console.log(obj);
-    arpScanner({interface: obj.name})
-    .then(onResult)
-    .catch(onError);
-  })
+var arp = new ARP_Discovery({timeout:1000, flood_interval: 300, resolve_macvendor:false});
 
+arp.on('error', function(err){
+  console.log(err);
+});
 
-function onResult(data) {
-    console.log(data);
-}
-
-function onError(err) {
-    throw err;
-}
+// Discovery :
+arp.on('success', function(res) {
+    if (!res) {
+        console.log('!res');
+        return;
+    }
+    var list = arp.getMacs();
+    if(list['8C:85:90:0C:AA:03'] !== undefined) {
+        console.log("found", list['8C:85:90:0C:AA:03']);
+    }
+    else
+    console.log('not found');
+    //console.log('success: '+util.inspect(res, { depth: null }));
+    //console.log('getMacs: '+util.inspect(arp.getMacs(), { depth: null }));
+    //console.log('getIps:  '+util.inspect(arp.getIps(), { depth: null }));
+});
+arp.discover();

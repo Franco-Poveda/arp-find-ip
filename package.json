@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Franco-Poveda/arp-find-ip#readme",
   "dependencies": {
-    "arpscan": "^0.6.0",
-    "network": "^0.4.0"
+    "async": "^2.6.0",
+    "ip": "^1.1.5"
   }
 }
