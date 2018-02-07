@@ -19,7 +19,7 @@ Usage
 
 ```node
 var util = require('util');
-var ARP = require('../lib/arp-find-ip');
+var ARP = require('arp-find-ip');
 
 var arp = new ARP();
 arp.discover();
